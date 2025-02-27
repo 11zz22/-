@@ -1,0 +1,442 @@
+<!DOCTYPE HTML>
+
+<head>
+  <title>水瓶和水杯详情</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="../css/review.css" rel="stylesheet" type="text/css" media="all" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+  <script type="text/javascript" src="../js/move-top.js"></script>
+  <script type="text/javascript" src="../js/easing.js"></script>
+  <script type="text/javascript" src="../js/navigation.js" defer></script>
+  <script type="text/javascript" src="../js/products.js"></script>
+  <script type="text/javascript" src="../js/cart.js"></script>
+  <script type="text/javascript" src="../js/search.js"></script>
+  <script type="text/javascript" src="../js/product-tabs.js"></script>
+  <script type="text/javascript" src="../js/review.js"></script>
+
+  <link href="../css/userAuth.css" rel="stylesheet" type="text/css" media="all" />
+  <script type="text/javascript" src="../js/userAuth.js"></script>
+
+  <link href="../css/userAuth.css" rel="stylesheet" type="text/css" media="all" />
+  <script type="text/javascript" src="../js/userAuth.js"></script>
+
+  <script type="text/javascript" src="../js/cart-functions.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <div class="wrap">
+      <div class="header_top">
+        <div class="logo">
+          <a href="../index.html"><img src="../images/logo.png" alt="" /></a>
+        </div>
+        <div class="header_top_right">
+          <div class="search_box">
+            <!-- 用户状态显示区域 -->
+            <div class="user-status">
+              <!-- 未登录状态 -->
+              <div id="guest-links" style="display: block;">
+                <a href="../login.html" class="auth-link">登录</a>
+                <a href="../register.html" class="auth-link">注册</a>
+              </div>
+              <!-- 已登录状态 -->
+              <div id="user-info" style="display: none;">
+                <span class="welcome-text">欢迎，</span>
+                <span id="username-display"></span>
+                <a href="javascript:void(0)" onclick="handleLogout()" class="logout-link">退出</a>
+              </div>
+            </div>
+            <!-- 搜索框 -->
+            <div class="search-area">
+              <form action="../search-results.html" method="get" id="searchForm">
+                <input type="text" name="q" id="searchInput" placeholder="输入关键词">
+                <input type="submit" value="搜索">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="navigation">
+        <a class="toggleMenu" href="#">菜单</a>
+        <ul class="nav">
+          <li>
+            <a href="../index.html">首页</a>
+          </li>
+          <li class="test">
+            <a href="#">厨房用品</a>
+            <ul>
+              <li>
+                <a href="#">厨具</a>
+                <ul>
+                  <li><a href="guojv.html">锅具</a></li>
+                  <li><a href="yaliguo.html">压力锅</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">储物</a>
+                <ul>
+                  <li><a href="pingbei.html">水瓶和水杯</a></li>
+                  <li><a href="guanzi.html">容器和罐子</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">餐具和餐桌用品</a>
+                <ul>
+                  <li><a href="canjv.html">餐具</a></li>
+                  <li><a href="tiaowei.html">调味料套装</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">酒吧用品</a>
+                <ul>
+                  <li><a href="kaipingqi.html">开瓶器</a></li>
+                  <li><a href="jiuchu.html">酒壶</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">电脑</a>
+            <ul>
+              <li>
+                <a href="#">笔记本电脑</a>
+                <ul>
+                  <li><a href="huipei.html">惠普</a></li>
+                  <li><a href="lianxiang.html">联想</a></li>
+                  <li><a href="del.html">戴尔</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">电脑配件</a>
+                <ul>
+                  <li><a href="yingpan.html">外置硬盘</a></li>
+                  <li><a href="upan.html">U盘</a></li>
+                  <li><a href="zujian.html">电脑组件</a></li>
+                  <li><a href="waishe.html">电脑外设</a></li>
+                  <li><a href="luyou.html">数据卡和路由器</a></li>
+                  <li><a href="shubiao.html">鼠标</a></li>
+                  <li><a href="tiezhi.html">笔记本贴纸</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">健康与美容</a>
+            <ul>
+              <li><a href="#">沐浴与护肤</a>
+                <ul>
+                  <li><a href="muyu.html">沐浴露</a></li>
+                  <li><a href="xifashui.html">洗发水</a></li>
+                  <li><a href="hufashui.html">护发素</a></li>
+                </ul>
+              </li>
+              <li><a href="jianyang.html">健康与安全</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">家居园艺</a>
+            <ul>
+              <li>
+                <a href="#">家具</a>
+                <ul>
+                  <li><a href="chuangpin.html">床品</a></li>
+                  <li><a href="yushi.html">浴室</a></li>
+                  <li><a href="chufang.html">厨房</a></li>
+                  <li><a href="keting.html">客厅</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">家居装饰</a>
+                <ul>
+                  <li><a href="huahui.html">花卉植物</a></li>
+                  <li><a href="xiangxun.html">家用香薰</a></li>
+                  <li><a href="zongjiao.html">宗教装饰</a></li>
+                  <li><a href="qiangmian.html">墙面装饰</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="yuanyi.html">园艺工具</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">办公用品</a>
+            <ul>
+              <li>
+                <a href="#">图书</a>
+                <ul>
+                  <li><a href="xueshu.html">学术专业</a></li>
+                  <li><a href="changxiao.html">畅销书籍</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">文具</a>
+                <ul>
+                  <li><a href="gangbi.html">钢笔</a></li>
+                  <li><a href="jisuanqi.html">计算器</a></li>
+                  <li><a href="xueyuan.html">学院用品</a></li>
+                  <li><a href="meishu.html">美术用品</a></li>
+                  <li><a href="rijiben.html">日记本</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">运动器材</a>
+            <ul>
+              <li>
+                <a href="#">健身</a>
+                <ul>
+                  <li><a href="yujia.html">瑜伽垫</a></li>
+                  <li><a href="jianshen.html">健身手套</a></li>
+                  <li><a href="fuqin.html">腹部训练器</a></li>
+                  <li><a href="jianshenqiu.html">健身球</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">室内运动</a>
+                <ul>
+                  <li><a href="guoji.html">国际象棋</a></li>
+                  <li><a href="feidiao.html">飞镖</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">团队运动</a>
+                <ul>
+                  <li><a href="lanqiu.html">篮球</a></li>
+                  <li><a href="banqiu.html">板球</a></li>
+                  <li><a href="zuqiu.html">足球</a></li>
+                  <li><a href="paiqiu.html">排球</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">球拍运动</a>
+                <ul>
+                  <li><a href="yumaoqiu.html">羽毛球</a></li>
+                  <li><a href="biquqiu.html">壁球</a></li>
+                  <li><a href="pingpangqiu.html">乒乓球</a></li>
+                  <li><a href="wangqiu.html">网球</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="../contact.html">联系我们</a>
+          </li>
+        </ul>
+        <span class="left-ribbon"> </span>
+        <span class="right-ribbon"> </span>
+      </div>
+    </div>
+  </div>
+  <!------------End Header ------------>
+  <div class="main">
+    <div class="wrap">
+      <div class="preview-page">
+        <div class="back-links">
+          <ul>
+            <li><a href="../index.html">首页</a> ::</li>
+            <li><a href="#">厨房用品</a> ::</li>
+            <li><a href="#">厨具</a> ::</li>
+            <li><a href="guojv.html"></a>锅具</a> ::</li>
+            <div class="clear"> </div>
+          </ul>
+        </div>
+        <div class="section group">
+          <div class="cont-desc span_1_of_2">
+            <div class="product-details">
+              <div class="grid images_3_of_2">
+                <div class="product-image-container" style="width: 300px; height: 300px; position: relative;">
+                  <div class="main-image"
+                    style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; border: 1px solid #eee;">
+                    <img src="../images/ping.jpg" alt="水瓶和水杯" style="width: 100%; height: 100%; object-fit: contain;">
+                  </div>
+                </div>
+              </div>
+              <div class="desc span_3_of_2">
+                <h2>不锈钢保温杯便携水杯</h2>
+                <p class="product-description">304不锈钢，12小时保温，防漏设计。</p>
+                <div class="product-price">
+                  <span class="price-label">价格：</span>
+                  <span class="price-symbol">￥</span>
+                  <span class="price-value">89</span>
+                </div>
+                <div class="quantity-section">
+                  <div class="share">
+                    <p>数量 :</p>
+                    <div class="quantity-control">
+                      <button onclick="decreaseQuantity()">-</button>
+                      <input type="text" id="quantity" value="1" onchange="checkQuantity(this)">
+                      <button onclick="increaseQuantity()">+</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="delivery-section">
+                  <p>配送至：<input type="text" name="address" class="address-input" placeholder="请输入收货地址"></p>
+                </div>
+                <div class="product-actions">
+                  <button class="add-to-cart" onclick="handleAddToCart({
+                      id: 'pingbei001',
+                      name: '保温杯便携水杯',
+                      price: 89,
+                      image: '../images/ping.jpg',
+                      quantity: document.getElementById('quantity').value
+                    })">加入购物车</button>
+                  <!-- <button class="buy-now">立即购买</button> -->
+                </div>
+              </div>
+              <div class="clear"></div>
+            </div>
+
+            <div class="product-tabs">
+              <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="specifications">产品规格</button>
+                <button class="tab-btn" data-tab="reviews">商品评价</button>
+              </div>
+
+              <div id="specifications" class="tab-content" style="display: block;">
+                <table class="specifications-table">
+                  <tr>
+                    <td class="spec-label">容量</td>
+                    <td class="spec-value">500ml</td>
+                  </tr>
+                  <tr>
+                    <td class="spec-label">材质</td>
+                    <td class="spec-value">304不锈钢</td>
+                  </tr>
+                  <tr>
+                    <td class="spec-label">保温时长</td>
+                    <td class="spec-value">12小时</td>
+                  </tr>
+                  <tr>
+                    <td class="spec-label">重量</td>
+                    <td class="spec-value">350g</td>
+                  </tr>
+                  <tr>
+                    <td class="spec-label">尺寸</td>
+                    <td class="spec-value">直径7cm×高23cm</td>
+                  </tr>
+                  <tr>
+                    <td class="spec-label">特点</td>
+                    <td class="spec-value">防漏、防摔、便携</td>
+                  </tr>
+                </table>
+              </div>
+              <div id="reviews" class="tab-content">
+                <div class="review-section">
+                  <form class="review-form" id="reviewForm">
+                    <h4>发表评价</h4>
+                    <div class="rating-item">
+                      <span class="rating-label">性价比：</span>
+                      <div class="star-rating price-rating">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                      </div>
+                    </div>
+                    <div class="rating-item">
+                      <span class="rating-label">质量：</span>
+                      <div class="star-rating quality-rating">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                      </div>
+                    </div>
+                    <textarea id="reviewContent" class="review-textarea" placeholder="请分享您的使用体验..." required></textarea>
+                    <button type="submit" class="submit-review">提交评价</button>
+                  </form>
+
+                  <div class="review-list" id="reviewList">
+                    <!-- 评价列表将在这里动态显示 -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="wrap">
+      <div class="copy_right">
+        <p>版权所有 &copy; 2014.公司名称保留所有权利.</p>
+      </div>
+      <div class="footer-nav">
+        <ul>
+          <li><a href="../terms.html">使用条款</a> : </li>
+          <li><a href="../privacy.html">隐私政策</a> : </li>
+          <li><a href="../contact.html">联系我们</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $().UItoTop({ easingType: 'easeOutQuart' });
+    });
+  </script>
+  <a href="#" id="toTop"> </a>
+  <script type="text/javascript" src="../js/navigation.js"></script>
+  <div style="display:none">
+    <script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script>
+  </div>
+  <script type="text/javascript">
+    function decreaseQuantity() {
+      var input = document.getElementById('quantity');
+      var value = parseInt(input.value);
+      if (value > 1) {
+        input.value = value - 1;
+      }
+    }
+
+    function increaseQuantity() {
+      var input = document.getElementById('quantity');
+      var value = parseInt(input.value);
+      input.value = value + 1;
+    }
+
+    function checkQuantity(input) {
+      var value = parseInt(input.value);
+      if (value < 1 || isNaN(value)) {
+        input.value = 1;
+      }
+    }
+
+    // 添加事件监听器，防止输入非数字
+    document.getElementById('quantity').addEventListener('keypress', function (e) {
+      if (!/\d/.test(e.key)) {
+        e.preventDefault();
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = getCurrentUser();
+      updateUserDisplay(user.username);
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = getCurrentUser();
+      if (user && user.username) {
+        console.log('发现用户:', user.username);
+        updateUserDisplay(user.username);
+      } else {
+        console.log('未找到用户信息');
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE HTML>
+
+<head>
+	<title>Contact</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/easing.js"></script>
+	<script type="text/javascript" src="js/navigation.js" defer></script>
+	<script type="text/javascript" src="js/search.js"></script>
+
+    <link href="css/userAuth.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="js/userAuth.js"></script>
+
+    <link href="css/userAuth.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="js/userAuth.js"></script>
+</head>
+
+<body>
+	<div class="header">
+    <div class="wrap">
+      <div class="header_top">
+        <div class="logo">
+          <a href="index.html"><img src="images/logo.png" alt="" /></a>
+        </div>
+        <div class="header_top_right">
+          <div class="search_box">
+            <!-- 用户状态显示区域 -->
+            <div class="user-status">
+              <!-- 未登录状态 -->
+              <div id="guest-links" style="display: block;">
+                <a href="login.html" class="auth-link">登录</a>
+                <a href="register.html" class="auth-link">注册</a>
+              </div>
+              <!-- 已登录状态 -->
+              <div id="user-info" style="display: none;">
+                <span class="welcome-text">欢迎，</span>
+                <span id="username-display"></span>
+                <a href="javascript:void(0)" onclick="handleLogout()" class="logout-link">退出</a>
+              </div>
+            </div>
+            <!-- 搜索框 -->
+            <div class="search-area">
+              <form action="search-results.html" method="get" id="searchForm">
+                <input type="text" name="q" id="searchInput" placeholder="输入关键词">
+                <input type="submit" value="搜索">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div><div class="navigation">
+				<a class="toggleMenu" href="#">菜单</a>
+				<ul class="nav">
+					<li>
+						<a href="index.html">首页</a>
+					</li>
+					<li class="test">
+						<a href="#">厨房用品</a>
+						<ul>
+							<li>
+								<a href="#">厨具</a>
+								<ul>
+									<li><a href="product/guojv.html">锅具</a></li>
+									<li><a href="product/yaliguo.html">压力锅</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">储物</a>
+								<ul>
+									<li><a href="product/pingbei.html">水瓶和水杯</a></li>
+									<li><a href="product/guanzi.html">容器和罐子</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">餐具和餐桌用品</a>
+								<ul>
+									<li><a href="product/canjv.html">餐具</a></li>
+									<li><a href="product/tiaowei.html">调味料套装</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">酒吧用品</a>
+								<ul>
+									<li><a href="product/kaipingqi.html">开瓶器</a></li>
+									<li><a href="product/jiuchu.html">酒壶</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">电脑</a>
+						<ul>
+							<li>
+								<a href="#">笔记本电脑</a>
+								<ul>
+									<li><a href="product/huipei.html">惠普</a></li>
+									<li><a href="product/lianxiang.html">联想</a></li>
+									<li><a href="product/del.html">戴尔</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">电脑配件</a>
+								<ul>
+									<li><a href="#">外置硬盘</a></li>
+									<li><a href="#">U盘</a></li>
+									<li><a href="#">电脑组件</a></li>
+									<li><a href="#">电脑外设</a></li>
+									<li><a href="#">数据卡和路由器</a></li>
+									<li><a href="#">鼠标</a></li>
+									<li><a href="#">笔记本贴纸</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">健康与美容</a>
+						<ul>
+							<li><a href="#">沐浴与护肤</a>
+								<ul>
+									<li><a href="#">沐浴露</a></li>
+									<li><a href="#">洗发水</a></li>
+									<li><a href="#">护发素</a></li>
+								</ul>
+							</li>
+							<li><a href="#">健康与安全</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">家居园艺</a>
+						<ul>
+							<li>
+								<a href="#">家具</a>
+								<ul>
+									<li><a href="#">床品</a></li>
+									<li><a href="#">浴室</a></li>
+									<li><a href="#">厨房</a></li>
+									<li><a href="#">客厅</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">家居装饰</a>
+								<ul>
+									<li><a href="#">花卉植物</a></li>
+									<li><a href="#">家用香薰</a></li>
+									<li><a href="#">宗教装饰</a></li>
+									<li><a href="#">墙面装饰</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">园艺工具</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">办公用品</a>
+						<ul>
+							<li>
+								<a href="#">图书</a>
+								<ul>
+									<li><a href="#">学术专业</a></li>
+									<li><a href="#">畅销书籍</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">文具</a>
+								<ul>
+									<li><a href="#">钢笔</a></li>
+									<li><a href="#">计算器</a></li>
+									<li><a href="#">学院用品</a></li>
+									<li><a href="#">美术用品</a></li>
+									<li><a href="#">日记本</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">运动器材</a>
+						<ul>
+							<li>
+								<a href="#">健身</a>
+								<ul>
+									<li><a href="#">瑜伽垫</a></li>
+									<li><a href="#">健身手套</a></li>
+									<li><a href="#">腹部训练器</a></li>
+									<li><a href="#">健身球</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">室内运动</a>
+								<ul>
+									<li><a href="#">国际象棋</a></li>
+									<li><a href="#">飞镖</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">团队运动</a>
+								<ul>
+									<li><a href="#">篮球</a></li>
+									<li><a href="#">板球</a></li>
+									<li><a href="#">足球</a></li>
+									<li><a href="#">排球</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">球拍运动</a>
+								<ul>
+									<li><a href="#">羽毛球</a></li>
+									<li><a href="#">壁球</a></li>
+									<li><a href="#">乒乓球</a></li>
+									<li><a href="#">网球</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="contact.html">联系我们</a>
+					</li>
+				</ul>
+				<span class="left-ribbon"> </span>
+				<span class="right-ribbon"> </span>
+			</div>
+			<div class="header_bottom">
+				<div class="slider-text">
+					<h2>精选商品 <br />品质保证</h2>
+					<p>为您提供优质的购物体验<br />满足您的所有需求</p>
+					<a href="index.html#content">立即选购</a>
+				</div>
+				<div class="slider-img">
+					<img src="images/slider-img.png" alt="" />
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	<div class="main">
+		<div class="wrap">
+			<div class="preview-page">
+				<div class="contact-form">
+					<h3>联系我们</h3>
+					<form method="post" id="contactForm">
+						<div>
+							<input name="userName" type="text" class="textbox textbox1" value="姓名..." onfocus="this.value = '';"
+								onblur="if (this.value == '') {this.value = '姓名...';}">
+							<span class="error-message" id="nameError" style="color: #e44f2b; display: none;">***姓名不能为空</span>
+							<input name="userEmail" type="text" class="textbox" value="邮箱..." onfocus="this.value = '';"
+								onblur="if (this.value == '') {this.value = '邮箱...';}">
+							<span class="error-message" id="emailError" style="color: #e44f2b; display: none;">***邮箱不能为空</span>
+							<input name="usersubject" type="text" class="textbox" value="主题..." onfocus="this.value = '';"
+								onblur="if (this.value == '') {this.value = '主题...';}">
+							<span class="error-message" id="subjectError" style="color: #e44f2b; display: none;">***主题不能为空</span>
+							<div class="clear"></div>
+						</div>
+						<div>
+							<span><textarea name="userMsg" value="留言:" onfocus="this.value = '';"
+									onblur="if (this.value == '') {this.value = '留言';}">留言</textarea></span>
+							<span class="error-message" id="messageError" style="color: #e44f2b; display: none;">***留言不能为空</span>
+						</div>
+						<div>
+							<input type="submit" value="提交" class="mybutton">
+							<div class="clear"></div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="footer">
+		<div class="wrap">
+			<div class="copy_right">
+				<p>版权所有 &copy; 2014.公司名称保留所有权利.</p>
+			</div>
+			<div class="footer-nav">
+				<ul>
+					<li><a href="terms.html">使用条款</a> : </li>
+					<li><a href="privacy.html">隐私政策</a> : </li>
+					<li><a href="contact.html">联系我们</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$().UItoTop({ easingType: 'easeOutQuart' });
+
+		});
+	</script>
+	<a href="#" id="toTop"> </a>
+	<script type="text/javascript" src="js/navigation.js"></script>
+	<div style="display:none">
+		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script>
+	</div>
+	<div id="successModal" class="modal" style="display: none;">
+		<div class="modal-content">
+			<h3>提交成功</h3>
+			<p>我们会尽快与您联系！</p>
+			<button class="modal-close">确定</button>
+		</div>
+	</div>
+	<style>
+		.modal {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.5);
+			display: none;
+			justify-content: center;
+			align-items: center;
+			z-index: 1000;
+		}
+
+		.modal-content {
+			background: white;
+			padding: 30px;
+			border-radius: 8px;
+			text-align: center;
+			position: relative;
+			max-width: 400px;
+			width: 90%;
+		}
+
+		.modal-content h3 {
+			margin-bottom: 20px;
+			color: #333;
+		}
+
+		.modal-content p {
+			color: #666;
+			margin-bottom: 20px;
+		}
+
+		.modal-close {
+			background: #e44f2b;
+			color: white;
+			border: none;
+			padding: 10px 30px;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		.modal-close:hover {
+			background: #d23f1d;
+		}
+	</style>
+	<script>
+		document.getElementById('contactForm').addEventListener('submit', function (e) {
+			e.preventDefault();
+
+			// 获取表单值
+			const name = document.querySelector('input[name="userName"]').value;
+			const email = document.querySelector('input[name="userEmail"]').value;
+			const subject = document.querySelector('input[name="usersubject"]').value;
+			const message = document.querySelector('textarea[name="userMsg"]').value;
+
+			// 重置所有错误提示
+			document.querySelectorAll('.error-message').forEach(error => error.style.display = 'none');
+
+			// 验证表单
+			let hasError = false;
+
+			if (name === '' || name === '姓名...') {
+				document.getElementById('nameError').style.display = 'inline';
+				hasError = true;
+			}
+
+			if (email === '' || email === '邮箱...') {
+				document.getElementById('emailError').style.display = 'inline';
+				hasError = true;
+			}
+
+			if (subject === '' || subject === '主题...') {
+				document.getElementById('subjectError').style.display = 'inline';
+				hasError = true;
+			}
+
+			if (message === '' || message === '留言') {
+				document.getElementById('messageError').style.display = 'inline';
+				hasError = true;
+			}
+
+			if (hasError) {
+				return;
+			}
+
+			// 显示模态框
+			const modal = document.getElementById('successModal');
+			modal.style.display = 'flex';
+
+			// 点击确定按钮关闭模态框
+			const closeBtn = modal.querySelector('.modal-close');
+			closeBtn.onclick = function () {
+				modal.style.display = 'none';
+				// 重置表单
+				document.getElementById('contactForm').reset();
+				// 重置默认值
+				document.querySelector('input[name="userName"]').value = '姓名...';
+				document.querySelector('input[name="userEmail"]').value = '邮箱...';
+				document.querySelector('input[name="usersubject"]').value = '主题...';
+				document.querySelector('textarea[name="userMsg"]').value = '留言';
+			}
+
+			// 点击模态框外部关闭
+			modal.onclick = function (event) {
+				if (event.target === modal) {
+					modal.style.display = 'none';
+					// 重置表单和默认值
+					document.getElementById('contactForm').reset();
+					document.querySelector('input[name="userName"]').value = '姓名...';
+					document.querySelector('input[name="userEmail"]').value = '邮箱...';
+					document.querySelector('input[name="usersubject"]').value = '主题...';
+					document.querySelector('textarea[name="userMsg"]').value = '留言';
+				}
+			}
+		});
+	</script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = getCurrentUser();
+            updateUserDisplay(user.username);
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = getCurrentUser();
+            if (user && user.username) {
+                console.log('发现用户:', user.username);
+                updateUserDisplay(user.username);
+            } else {
+                console.log('未找到用户信息');
+            }
+        });
+    </script>
+</body>
+
+</html>

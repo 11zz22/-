@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>404 - 页面未找到</title>
+  <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+  <style>
+    .error-container {
+      text-align: center;
+      padding: 50px;
+    }
+
+    .error-title {
+      font-size: 48px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .error-message {
+      font-size: 24px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .back-home {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+  </style>
+
+    <link href="css/userAuth.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="js/userAuth.js"></script>
+
+    <link href="../css/userAuth.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="../js/userAuth.js"></script>
+</head>
+
+<body>
+  <div class="error-container">
+    <h1 class="error-title">404</h1>
+    <p class="error-message">抱歉，页面未找到</p>
+    <a href="/" class="back-home">返回首页</a>
+  </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = getCurrentUser();
+            updateUserDisplay(user.username);
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = getCurrentUser();
+            if (user && user.username) {
+                console.log('发现用户:', user.username);
+                updateUserDisplay(user.username);
+            } else {
+                console.log('未找到用户信息');
+            }
+        });
+    </script>
+</body>
+
+</html>

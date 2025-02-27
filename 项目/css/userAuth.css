@@ -1,0 +1,38 @@
+/* 用户状态样式 */
+.user-status {
+  float: right;
+  margin: 10px 20px;
+}
+
+#user-info {
+  display: inline-block;
+}
+
+.welcome-text {
+  color: #666;
+}
+
+#username-display {
+  color: #4CAF50;
+  font-weight: bold;
+  margin: 0 5px;
+}
+
+.logout-link {
+  color: #f44336;
+  text-decoration: none;
+  margin-left: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.auth-link {
+  color: #666;
+  text-decoration: none;
+  margin: 0 10px;
+  padding: 5px 10px;
+}
+
+.auth-link:hover {
+  color: #333;
+}

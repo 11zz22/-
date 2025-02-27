@@ -1,0 +1,279 @@
+<!DOCTYPE HTML>
+
+<head>
+  <title>搜索结果</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="css/search.css" rel="stylesheet" type="text/css" media="all" />
+  <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+  <script type="text/javascript" src="js/move-top.js"></script>
+  <script type="text/javascript" src="js/easing.js"></script>
+  <script type="text/javascript" src="js/navigation.js" defer></script>
+
+    <link href="css/userAuth.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="js/userAuth.js"></script>
+
+    <link href="css/userAuth.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="js/userAuth.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <div class="wrap">
+      <div class="header_top">
+        <div class="logo">
+          <a href="index.html"><img src="images/logo.png" alt="" /></a>
+        </div>
+        <div class="header_top_right">
+          <div class="search_box">
+            <!-- 用户状态显示区域 -->
+            <div class="user-status">
+              <!-- 未登录状态 -->
+              <div id="guest-links" style="display: block;">
+                <a href="login.html" class="auth-link">登录</a>
+                <a href="register.html" class="auth-link">注册</a>
+              </div>
+              <!-- 已登录状态 -->
+              <div id="user-info" style="display: none;">
+                <span class="welcome-text">欢迎，</span>
+                <span id="username-display"></span>
+                <a href="javascript:void(0)" onclick="handleLogout()" class="logout-link">退出</a>
+              </div>
+            </div>
+            <!-- 搜索框 -->
+            <div class="search-area">
+              <form action="search-results.html" method="get" id="searchForm">
+                <input type="text" name="q" id="searchInput" placeholder="输入关键词">
+                <input type="submit" value="搜索">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div><div class="navigation">
+        <a class="toggleMenu" href="#">菜单</a>
+        <ul class="nav">
+          <li>
+            <a href="index.html">首页</a>
+          </li>
+          <li class="test">
+            <a href="#">厨房用品</a>
+            <ul>
+              <li>
+                <a href="#">厨具</a>
+                <ul>
+                  <li><a href="product/guojv.html">锅具</a></li>
+                  <li><a href="product/yaliguo.html">压力锅</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">储物</a>
+                <ul>
+                  <li><a href="product/pingbei.html">水瓶和水杯</a></li>
+                  <li><a href="product/guanzi.html">容器和罐子</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">餐具和餐桌用品</a>
+                <ul>
+                  <li><a href="product/canjv.html">餐具</a></li>
+                  <li><a href="product/tiaowei.html">调味料套装</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">酒吧用品</a>
+                <ul>
+                  <li><a href="product/kaipingqi.html">开瓶器</a></li>
+                  <li><a href="product/jiuchu.html">酒壶</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">电脑</a>
+            <ul>
+              <li>
+                <a href="#">笔记本电脑</a>
+                <ul>
+                  <li><a href="product/huipei.html">惠普</a></li>
+                  <li><a href="product/lianxiang.html">联想</a></li>
+                  <li><a href="product/del.html">戴尔</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">电脑配件</a>
+                <ul>
+                  <li><a href="product/yingpan.html">外置硬盘</a></li>
+                  <li><a href="product/upan.html">U盘</a></li>
+                  <li><a href="product/zujian.html">电脑组件</a></li>
+                  <li><a href="product/waishe.html">电脑外设</a></li>
+                  <li><a href="product/luyou.html">数据卡和路由器</a></li>
+                  <li><a href="product/shubiao.html">鼠标</a></li>
+                  <li><a href="product/tiezhi.html">笔记本贴纸</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">健康与美容</a>
+            <ul>
+              <li><a href="#">沐浴与护肤</a>
+                <ul>
+                  <li><a href="product/muyu.html">沐浴露</a></li>
+                  <li><a href="product/xifashui.html">洗发水</a></li>
+                  <li><a href="product/hufashui.html">护发素</a></li>
+                </ul>
+              </li>
+              <li><a href="product/jianyang.html">健康与安全</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">家居园艺</a>
+            <ul>
+              <li>
+                <a href="#">家具</a>
+                <ul>
+                  <li><a href="product/chuangpin.html">床品</a></li>
+                  <li><a href="product/yushi.html">浴室</a></li>
+                  <li><a href="product/chufang.html">厨房</a></li>
+                  <li><a href="product/keting.html">客厅</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">家居装饰</a>
+                <ul>
+                  <li><a href="product/huahui.html">花卉植物</a></li>
+                  <li><a href="product/xiangxun.html">家用香薰</a></li>
+                  <li><a href="product/zongjiao.html">宗教装饰</a></li>
+                  <li><a href="product/qiangmian.html">墙面装饰</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="product/yuanyi.html">园艺工具</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">办公用品</a>
+            <ul>
+              <li>
+                <a href="#">图书</a>
+                <ul>
+                  <li><a href="product/xueshu.html">学术专业</a></li>
+                  <li><a href="product/changxiao.html">畅销书籍</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">文具</a>
+                <ul>
+                  <li><a href="product/gangbi.html">钢笔</a></li>
+                  <li><a href="product/jisuanqi.html">计算器</a></li>
+                  <li><a href="product/xueyuan.html">学院用品</a></li>
+                  <li><a href="product/meishu.html">美术用品</a></li>
+                  <li><a href="product/rijiben.html">日记本</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">运动器材</a>
+            <ul>
+              <li>
+                <a href="#">健身</a>
+                <ul>
+                  <li><a href="product/yujia.html">瑜伽垫</a></li>
+                  <li><a href="product/jianshen.html">健身手套</a></li>
+                  <li><a href="product/fuqin.html">腹部训练器</a></li>
+                  <li><a href="product/jianshenqiu.html">健身球</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">室内运动</a>
+                <ul>
+                  <li><a href="product/guoji.html">国际象棋</a></li>
+                  <li><a href="product/feidiao.html">飞镖</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">团队运动</a>
+                <ul>
+                  <li><a href="product/lanqiu.html">篮球</a></li>
+                  <li><a href="product/banqiu.html">板球</a></li>
+                  <li><a href="product/zuqiu.html">足球</a></li>
+                  <li><a href="product/paiqiu.html">排球</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">球拍运动</a>
+                <ul>
+                  <li><a href="product/yumaoqiu.html">羽毛球</a></li>
+                  <li><a href="product/biquqiu.html">壁球</a></li>
+                  <li><a href="product/pingpangqiu.html">乒乓球</a></li>
+                  <li><a href="product/wangqiu.html">网球</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="./contact.html">联系我们</a>
+          </li>
+        </ul>
+        <span class="left-ribbon"> </span>
+        <span class="right-ribbon"> </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="wrap">
+      <div class="content">
+        <h2>搜索结果</h2>
+        <div id="searchResults">
+          <!-- 搜索结果将通过 JavaScript 动态插入 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer">
+      <div class="wrap">
+        <div class="copy_right">
+          <p>版权所有 &copy; 2014.公司名称保留所有权利.</p>
+        </div>
+        <div class="footer-nav">
+          <ul>
+            <li><a href="terms.html">使用条款</a> : </li>
+            <li><a href="privacy.html">隐私政策</a> : </li>
+            <li><a href="contact.html">联系我们</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/products.js"></script>
+  <script src="js/search.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = getCurrentUser();
+            updateUserDisplay(user.username);
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = getCurrentUser();
+            if (user && user.username) {
+                console.log('发现用户:', user.username);
+                updateUserDisplay(user.username);
+            } else {
+                console.log('未找到用户信息');
+            }
+        });
+    </script>
+</body>
+
+</html>

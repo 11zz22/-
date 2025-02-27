@@ -1,0 +1,567 @@
+<!DOCTYPE HTML>
+
+<head>
+  <title>购物车</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="css/cart.css" rel="stylesheet" type="text/css" media="all" />
+  <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+  <script type="text/javascript" src="js/move-top.js"></script>
+  <script type="text/javascript" src="js/easing.js"></script>
+  <script type="text/javascript" src="js/navigation.js"></script>
+  <script type="text/javascript" src="js/userAuth.js"></script>
+  <script src="js/cart-functions.js"></script>
+
+  <style>
+    .cart-title {
+      margin: 20px 0;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #4CAF50;
+    }
+
+    .cart-title h1 {
+      color: #333;
+      font-size: 24px;
+      font-weight: bold;
+      position: relative;
+      display: inline-block;
+    }
+
+    .cart-title h1:after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #4CAF50;
+    }
+
+    .cart-container {
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 10px;
+    }
+
+    .cart-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-right: 20px;
+      border-radius: 4px;
+    }
+
+    .cart-item-info {
+      flex: 1;
+    }
+
+    .cart-item h3 {
+      margin: 0 0 10px;
+      color: #333;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+    }
+
+    .quantity-controls button {
+      padding: 5px 12px;
+      border: 1px solid #ddd;
+      background: #fff;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .quantity-controls span {
+      margin: 0 15px;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .cart-total {
+      margin-top: 20px;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      text-align: right;
+      font-size: 18px;
+    }
+
+    .remove-item {
+      padding: 8px 15px;
+      background: #ff4444;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .remove-item:hover {
+      background: #ff0000;
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 50px;
+      color: #666;
+      font-size: 16px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .checkout-button {
+      display: block;
+      width: 200px;
+      margin: 20px 0 0 auto;
+      padding: 12px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .checkout-button:hover {
+      background: #45a049;
+    }
+
+    /* 购物车链接样式 */
+    .cart-link {
+      float: right;
+      margin: 10px 15px;
+    }
+
+    .cart-link a {
+      display: flex;
+      align-items: center;
+      color: #666;
+      font-size: 16px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .cart-link a:before {
+      content: '🛒';
+      margin-right: 5px;
+      font-size: 18px;
+    }
+
+    .cart-link a:hover {
+      color: #4CAF50;
+    }
+
+    .cart-item-content {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-item-info {
+      margin-left: 20px;
+      flex: 1;
+    }
+
+    /* 用户状态区域样式 */
+    .header_top_right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .user-status {
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .welcome-text {
+      color: #666;
+      margin-right: 5px;
+    }
+
+    #username-display {
+      color: #4CAF50;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .auth-link {
+      color: #666;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .auth-link:hover {
+      color: #4CAF50;
+    }
+
+    .logout-link {
+      color: #ff4444;
+      text-decoration: none;
+      margin-left: 10px;
+      transition: color 0.3s;
+    }
+
+    .logout-link:hover {
+      color: #ff0000;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div class="wrap">
+      <div class="header_top">
+        <div class="logo">
+          <a href="index.html"><img src="images/logo.png" alt="" /></a>
+        </div>
+        <div class="header_top_right">
+          <div class="search_box">
+            <!-- 搜索框 -->
+            <div class="search-area">
+              <form action="search-results.html" method="get" id="searchForm">
+                <input type="text" name="q" id="searchInput" placeholder="输入关键词">
+                <input type="submit" value="搜索">
+              </form>
+            </div>
+          </div>
+          <!-- 用户状态显示区域 -->
+          <div class="user-status">
+            <!-- 未登录状态 -->
+            <div id="guest-links" style="display: block;">
+              <a href="login.html" class="auth-link">登录</a>
+              <a href="register.html" class="auth-link">注册</a>
+            </div>
+            <!-- 已登录状态 -->
+            <div id="user-info" style="display: none;">
+              <span class="welcome-text">欢迎，</span>
+              <span id="username-display"></span>
+              <a href="javascript:void(0)" onclick="handleLogout()" class="logout-link">退出</a>
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+
+      <!-- 导航菜单 -->
+      <div class="navigation">
+        <a class="toggleMenu" href="#">菜单</a>
+        <ul class="nav">
+          <li>
+            <a href="index.html">首页</a>
+          </li>
+          <li class="test">
+            <a href="#">厨房用品</a>
+            <ul>
+              <li>
+                <a href="#">厨具</a>
+                <ul>
+                  <li><a href="product/guojv.html">锅具</a></li>
+                  <li><a href="product/yaliguo.html">压力锅</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">储物</a>
+                <ul>
+                  <li><a href="product/pingbei.html">水瓶和水杯</a></li>
+                  <li><a href="product/guanzi.html">容器和罐子</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">餐具和餐桌用品</a>
+                <ul>
+                  <li><a href="product/canjv.html">餐具</a></li>
+                  <li><a href="product/tiaowei.html">调味料套装</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">酒吧用品</a>
+                <ul>
+                  <li><a href="product/kaipingqi.html">开瓶器</a></li>
+                  <li><a href="product/jiuchu.html">酒壶</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">电脑</a>
+            <ul>
+              <li>
+                <a href="#">笔记本电脑</a>
+                <ul>
+                  <li><a href="product/huipei.html">惠普</a></li>
+                  <li><a href="product/lianxiang.html">联想</a></li>
+                  <li><a href="product/del.html">戴尔</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">电脑配件</a>
+                <ul>
+                  <li><a href="yingpan.html">外置硬盘</a></li>
+                  <li><a href="upan.html">U盘</a></li>
+                  <li><a href="zujian.html">电脑组件</a></li>
+                  <li><a href="waishe.html">电脑外设</a></li>
+                  <li><a href="luyou.html">数据卡和路由器</a></li>
+                  <li><a href="shubiao.html">鼠标</a></li>
+                  <li><a href="tiezhi.html">笔记本贴纸</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">健康与美容</a>
+            <ul>
+              <li><a href="#">沐浴与护肤</a>
+                <ul>
+                  <li><a href="muyu.html">沐浴露</a></li>
+                  <li><a href="xifashui.html">洗发水</a></li>
+                  <li><a href="hufashui.html">护发素</a></li>
+                </ul>
+              </li>
+              <li><a href="jianyang.html">健康与安全</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">家居园艺</a>
+            <ul>
+              <li>
+                <a href="#">家具</a>
+                <ul>
+                  <li><a href="chuangpin.html">床品</a></li>
+                  <li><a href="yushi.html">浴室</a></li>
+                  <li><a href="chufang.html">厨房</a></li>
+                  <li><a href="keting.html">客厅</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">家居装饰</a>
+                <ul>
+                  <li><a href="huahui.html">花卉植物</a></li>
+                  <li><a href="xiangxun.html">家用香薰</a></li>
+                  <li><a href="zongjiao.html">宗教装饰</a></li>
+                  <li><a href="qiangmian.html">墙面装饰</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="yuanyi.html">园艺工具</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">办公用品</a>
+            <ul>
+              <li>
+                <a href="#">图书</a>
+                <ul>
+                  <li><a href="xueshu.html">学术专业</a></li>
+                  <li><a href="changxiao.html">畅销书籍</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">文具</a>
+                <ul>
+                  <li><a href="gangbi.html">钢笔</a></li>
+                  <li><a href="jisuanqi.html">计算器</a></li>
+                  <li><a href="xueyuan.html">学院用品</a></li>
+                  <li><a href="meishu.html">美术用品</a></li>
+                  <li><a href="rijiben.html">日记本</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">运动器材</a>
+            <ul>
+              <li>
+                <a href="#">健身</a>
+                <ul>
+                  <li><a href="yujia.html">瑜伽垫</a></li>
+                  <li><a href="jianshen.html">健身手套</a></li>
+                  <li><a href="fuqin.html">腹部训练器</a></li>
+                  <li><a href="jianshenqiu.html">健身球</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">室内运动</a>
+                <ul>
+                  <li><a href="guoji.html">国际象棋</a></li>
+                  <li><a href="feidiao.html">飞镖</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">团队运动</a>
+                <ul>
+                  <li><a href="lanqiu.html">篮球</a></li>
+                  <li><a href="banqiu.html">板球</a></li>
+                  <li><a href="zuqiu.html">足球</a></li>
+                  <li><a href="paiqiu.html">排球</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">球拍运动</a>
+                <ul>
+                  <li><a href="yumaoqiu.html">羽毛球</a></li>
+                  <li><a href="biquqiu.html">壁球</a></li>
+                  <li><a href="pingpangqiu.html">乒乓球</a></li>
+                  <li><a href="wangqiu.html">网球</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="./contact.html">联系我们</a>
+          </li>
+        </ul>
+        <span class="left-ribbon"> </span>
+        <span class="right-ribbon"> </span>
+      </div>
+    </div>
+    <div class="header_bottom">
+      <div class="wrap">
+        <div class="slider-text">
+          <h2>精选商品 <br />品质保证</h2>
+          <p>为您提供优质的购物体验<br />满足您的所有需求</p>
+          <a href="index.html#content">立即选购</a>
+        </div>
+        <div class="slider-img">
+          <img src="images/slider-img.png" alt="" />
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+  </ul>
+  <span class="left-ribbon"> </span>
+  <span class="right-ribbon"> </span>
+  </div>
+  </div>
+  </div>
+
+  <div class="main">
+    <div class="wrap">
+      <div class="cart-page">
+        <div class="cart-header">
+          <h1>我的购物车</h1>
+        </div>
+        <div class="cart-controls">
+          <label class="checkbox-wrapper">
+            <input type="checkbox" id="select-all">
+            <span class="checkbox-label">全选</span>
+          </label>
+          <div class="batch-actions">
+            <button class="delete-selected" onclick="removeSelectedItems()">删除选中</button>
+            <button class="clear-cart" onclick="clearCart()">清空购物车</button>
+          </div>
+        </div>
+        <div id="cart-container">
+          <!-- 购物车内容将由 JavaScript 动态生成 -->
+        </div>
+        <div class="cart-footer">
+          <div class="cart-total">
+            <div class="selected-info">
+              <span>已选择 <span id="selected-count">0</span> 件商品</span>
+            </div>
+            <div class="total-info">
+              <span class="total-label">总计:</span>
+              <span class="total-amount">¥<span id="total-amount">0</span></span>
+            </div>
+            <button class="checkout-button" onclick="goToCheckout()">去结算</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="wrap">
+      <div class="copy_right">
+        <p>版权所有 &copy; 2014.公司名称保留所有权利.</p>
+      </div>
+      <div class="footer-nav">
+        <ul>
+          <li><a href="terms.html">使用条款</a> : </li>
+          <li><a href="privacy.html">隐私政策</a> : </li>
+          <li><a href="contact.html">联系我们</a> : </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $().UItoTop({ easingType: 'easeOutQuart' });
+    });
+  </script>
+  <a href="#" id="toTop"></a>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 检查用户是否登录
+      if (!checkLoginStatus()) {
+        redirectToLogin();
+        return;
+      }
+
+      const user = getCurrentUser();
+      updateUserDisplay(user.username);
+      // 初始化购物车显示
+      updateCartDisplay();
+    });
+  </script>
+
+  <!-- 模态框 -->
+  <div id="modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">提示</h3>
+        <span class="close" onclick="closeModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <p id="modal-message"></p>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn cancel" onclick="closeModal()">取消</button>
+        <button class="modal-btn confirm" id="modal-confirm">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 删除确认模态框 -->
+  <div id="delete-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">删除确认</h3>
+        <span class="close" onclick="closeDeleteModal()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <p>确定要删除该商品吗？</p>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn cancel" onclick="closeDeleteModal()">取消</button>
+        <button class="modal-btn confirm" onclick="confirmDelete()">确定</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

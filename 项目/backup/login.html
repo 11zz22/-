@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录</title>
+  <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+  <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+  <script type="text/javascript" src="js/move-top.js"></script>
+  <script type="text/javascript" src="js/easing.js"></script>
+  <style>
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+
+    <link href="css/userAuth.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="js/userAuth.js"></script>
+
+    <link href="../css/userAuth.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="../js/userAuth.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <div class="wrap">
+      <div class="header_top">
+        <div class="logo">
+          <a href="index.html"><img src="images/logo.png" alt="" /></a>
+        </div>
+        <div class="header_top_right">
+          <div class="search_box">
+            <span><a href="login.html">登录</a></span>
+            <span><a href="register.html">注册</a></span>
+            <span>搜索</span>
+            <form action="search-results.html" method="get" id="searchForm">
+              <input type="text" name="q" id="searchInput" placeholder="输入关键词">
+              <input type="submit" value="搜索">
+            </form>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="wrap">
+      <div class="form-container">
+        <h2>用户登录</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label>用户名：</label>
+            <input type="text" id="username" required>
+          </div>
+          <div class="form-group">
+            <label>密码：</label>
+            <input type="password" id="password" required>
+          </div>
+          <button type="submit">登录</button>
+        </form>
+        <p id="message"></p>
+        <p>还没有账号？<a href="register.html">立即注册</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="wrap">
+      <div class="copy_right">
+        <p>版权所有 &copy; 2014.公司名称保留所有权利.</p>
+      </div>
+      <div class="footer-nav">
+        <ul>
+          <li><a href="terms.html">使用条款</a> : </li>
+          <li><a href="privacy.html">隐私政策</a> : </li>
+          <li><a href="contact.html">联系我们</a> : </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $().UItoTop({ easingType: 'easeOutQuart' });
+    });
+  </script>
+  <a href="#" id="toTop"> </a>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // 保存 token
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+
+          // 跳转到主页
+          window.location.href = 'index.html';
+        } else {
+          document.getElementById('message').textContent = data.message;
+        }
+      } catch (error) {
+        document.getElementById('message').textContent = '服务器错误';
+      }
+    });
+  </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = getCurrentUser();
+            updateUserDisplay(user.username);
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = getCurrentUser();
+            if (user && user.username) {
+                console.log('发现用户:', user.username);
+                updateUserDisplay(user.username);
+            } else {
+                console.log('未找到用户信息');
+            }
+        });
+    </script>
+</body>
+
+</html>

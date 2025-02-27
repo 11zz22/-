@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用户注册</title>
+  <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+  <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+  <script type="text/javascript" src="js/move-top.js"></script>
+  <script type="text/javascript" src="js/easing.js"></script>
+  <script type="text/javascript" src="js/userAuth.js"></script>
+  <style>
+    .form-container {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .form-message {
+      text-align: center;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    .form-message.error {
+      background-color: #ffe6e6;
+      color: #ff0000;
+    }
+
+    .form-message.success {
+      background-color: #e6ffe6;
+      color: #008000;
+    }
+
+    /* 添加用户信息样式 */
+    #user-info {
+      display: inline-block;
+      margin-right: 15px;
+    }
+
+    #user-info span {
+      margin-right: 10px;
+    }
+
+    #username-display {
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    .logout-link {
+      color: #dc3545;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .logout-link:hover {
+      color: #c82333;
+    }
+
+    .user-status {
+      float: right;
+      margin: 10px 20px;
+    }
+
+    .auth-link {
+      color: #666;
+      text-decoration: none;
+      margin: 0 10px;
+      padding: 5px 10px;
+    }
+
+    .auth-link:hover {
+      color: #333;
+    }
+
+    #user-info {
+      display: inline-block;
+    }
+
+    .welcome-text {
+      color: #666;
+    }
+
+    .username {
+      color: #4CAF50;
+      font-weight: bold;
+      margin: 0 5px;
+    }
+
+    .logout-link {
+      color: #f44336;
+      text-decoration: none;
+      margin-left: 10px;
+      padding: 5px 10px;
+    }
+
+    .logout-link:hover {
+      color: #d32f2f;
+    }
+
+    .search-area {
+      clear: both;
+      padding-top: 10px;
+    }
+  </style>
+
+    <link href="css/userAuth.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="js/userAuth.js"></script>
+
+    <link href="../css/userAuth.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="../js/userAuth.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <div class="wrap">
+      <div class="header_top">
+        <div class="logo">
+          <a href="index.html"><img src="images/logo.png" alt="" /></a>
+        </div>
+        <div class="header_top_right">
+          <div class="search_box">
+            <!-- 用户状态显示区域 -->
+            <div class="user-status">
+              <!-- 未登录状态 -->
+              <div id="guest-links">
+                <a href="login.html" class="auth-link">登录</a>
+                <a href="register.html" class="auth-link">注册</a>
+              </div>
+              <!-- 已登录状态 -->
+              <div id="user-info" style="display: none;">
+                <span class="welcome-text">欢迎，</span>
+                <span id="username-display" class="username"></span>
+                <a href="javascript:void(0)" onclick="handleLogout()" class="logout-link">退出</a>
+              </div>
+            </div>
+            <!-- 搜索框 -->
+            <div class="search-area">
+              <form action="search-results.html" method="get" id="searchForm">
+                <input type="text" name="q" id="searchInput" placeholder="输入关键词">
+                <input type="submit" value="搜索">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="wrap">
+      <div class="form-container">
+        <h2>用户注册</h2>
+        <form id="registerForm">
+          <div class="form-group">
+            <label for="username">用户名：</label>
+            <input type="text" id="username" required>
+          </div>
+          <div class="form-group">
+            <label for="email">邮箱：</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">密码：</label>
+            <input type="password" id="password" required>
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">确认密码：</label>
+            <input type="password" id="confirm-password" required>
+          </div>
+          <button type="submit">注册</button>
+          <div id="form-message" class="form-message"></div>
+        </form>
+        <p>已有账号？<a href="login.html">立即登录</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="wrap">
+      <div class="copy_right">
+        <p>版权所有 &copy; 2014.公司名称保留所有权利.</p>
+      </div>
+      <div class="footer-nav">
+        <ul>
+          <li><a href="terms.html">使用条款</a> : </li>
+          <li><a href="privacy.html">隐私政策</a> : </li>
+          <li><a href="contact.html">联系我们</a> : </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $().UItoTop({ easingType: 'easeOutQuart' });
+    });
+  </script>
+  <a href="#" id="toTop"> </a>
+
+  <script>
+    async function handleRegister() {
+      // 获取表单数据
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      const messageElement = document.getElementById('form-message');
+
+      // 清除之前的错误消息
+      clearErrors();
+
+      // 表单验证
+      if (!username) {
+        messageElement.textContent = '请输入用户名';
+        messageElement.className = 'form-message error';
+        return;
+      }
+      if (!email) {
+        messageElement.textContent = '请输入邮箱';
+        messageElement.className = 'form-message error';
+        return;
+      }
+      if (!password) {
+        messageElement.textContent = '请输入密码';
+        messageElement.className = 'form-message error';
+        return;
+      }
+      if (password !== confirmPassword) {
+        messageElement.textContent = '两次输入的密码不一致';
+        messageElement.className = 'form-message error';
+        return;
+      }
+
+      // 显示正在处理的消息
+      messageElement.textContent = '正在注册...';
+      messageElement.className = 'form-message';
+
+      try {
+        console.log('发送注册请求...');
+        const response = await fetch('http://localhost:5000/api/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            username,
+            email,
+            password
+          })
+        });
+
+        console.log('收到响应:', response);
+        const data = await response.json();
+        console.log('响应数据:', data);
+
+        if (response.ok) {
+          // 注册成功
+          messageElement.textContent = '注册成功！正在跳转...';
+          messageElement.className = 'form-message success';
+
+          // 保存登录信息
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+
+          // 直接跳转到首页
+          window.location.href = '/';
+        } else {
+          // 显示错误信息
+          messageElement.textContent = data.message || '注册失败，请稍后重试';
+          messageElement.className = 'form-message error';
+        }
+      } catch (error) {
+        console.error('注册错误:', error);
+        messageElement.textContent = '服务器连接失败，请检查网络或稍后重试';
+        messageElement.className = 'form-message error';
+      }
+    }
+
+    function showError(fieldId, message) {
+      const field = document.getElementById(fieldId);
+      const errorDiv = field.nextElementSibling;
+      errorDiv.textContent = message;
+      field.style.borderColor = 'red';
+    }
+
+    function clearErrors() {
+      const errorMessages = document.querySelectorAll('.error-message');
+      const inputs = document.querySelectorAll('input');
+      errorMessages.forEach(div => div.textContent = '');
+      inputs.forEach(input => input.style.borderColor = '#ddd');
+      document.getElementById('form-message').textContent = '';
+    }
+
+    // 实时密码验证
+    document.getElementById('confirm-password').addEventListener('input', function () {
+      const password = document.getElementById('password').value;
+      if (this.value && password && this.value !== password) {
+        showError('confirm-password', '两次输入的密码不一致');
+      } else {
+        clearErrors();
+      }
+    });
+
+    // 修改页面加载时的检查
+    document.addEventListener('DOMContentLoaded', () => {
+      // 使用 userAuth.js 中的函数
+      const user = getCurrentUser();
+      updateUserDisplay(user.username);
+    });
+
+    // 添加表单提交事件监听
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault(); // 阻止表单默认提交
+      await handleRegister();
+    });
+  </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = getCurrentUser();
+            updateUserDisplay(user.username);
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = getCurrentUser();
+            if (user && user.username) {
+                console.log('发现用户:', user.username);
+                updateUserDisplay(user.username);
+            } else {
+                console.log('未找到用户信息');
+            }
+        });
+    </script>
+</body>
+
+</html>

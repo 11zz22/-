@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>购物车</title>
+  <link rel="stylesheet" href="styles/cart.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+  <nav class="nav-bar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="index.html">首页</a>
+      </div>
+      <div class="nav-right">
+        <a href="cart.html" class="cart-link">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>我的购物车</h1>
+
+    <div class="cart-content">
+      <div id="cart-items" class="cart-items">
+        <!-- 购物车商品将在这里动态显示 -->
+      </div>
+
+      <div class="cart-summary">
+        <div class="summary-item">
+          <span>商品总数：</span>
+          <span id="total-items">0</span>
+        </div>
+        <div class="summary-item">
+          <span>总价：</span>
+          <span id="total-price">¥0.00</span>
+        </div>
+        <button id="checkout-btn" class="checkout-btn">结算</button>
+        <button id="continue-shopping" class="continue-btn">继续购物</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/cart.js"></script>
+</body>
+
+</html>
